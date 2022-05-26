@@ -1,0 +1,23 @@
+# myBatis
+mybatis:
+mapper-locations: mybatis/mapper/*.xml
+type-aliases-package: com.hoin.boardStudy
+config-location: classpath:mybatis-config.xml
+
+# ?? ??
+spring:
+  mail:
+      host: smtp.gmail.com
+      port: 587
+      username: dahoonemailtest@gmail.com
+      password: andrprnfma
+      properties:
+        mail:
+            transport:
+              protocol: smtp
+            smtp:
+                ssl:
+                    protocols: TLSv1.2
+                auth: true
+                starttls:
+                    enable: true

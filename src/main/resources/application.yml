@@ -1,10 +1,4 @@
-# myBatis
-mybatis:
-mapper-locations: mybatis/mapper/*.xml
-type-aliases-package: com.hoin.boardStudy
-config-location: classpath:mybatis-config.xml
-
-# ?? ??
+# 이메일 설정
 spring:
   mail:
       host: smtp.gmail.com

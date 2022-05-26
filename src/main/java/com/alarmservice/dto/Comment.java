@@ -1,4 +1,4 @@
-package com.example.alarmservice.dto;
+package com.alarmservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Comment {
     private int commentId;
     private int boardId;

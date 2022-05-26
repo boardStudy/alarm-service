@@ -1,4 +1,4 @@
-package com.example.alarmservice.dto;
+package com.alarmservice.dto;
 
 import lombok.*;
 
@@ -7,15 +7,14 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
-@Getter @Setter @ToString
-@NoArgsConstructor // 파라메터가 없는 생성자를 생성한다. (기본 생성자)
-@AllArgsConstructor // 클래스에 존재하는 모든 필드에 대한 생성자를 자동으로 생성한다.
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
 
     @NotBlank(message = "아이디는 필수 입력값 입니다.")
     @Pattern(regexp = "^([a-z0-9]){4,30}$", message = "아이디를 재확인해주세요.")
     private String userId;
-
 
     @NotBlank(message = "비밀번호는 필수 입력값 입니다.")
     @Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}", message = "비밀번호를 재확인해주세요.")
@@ -37,13 +36,5 @@ public class User implements Serializable {
     private int gender;
     private int userAuth;
 
-    @Builder
-    public User(String userId, String password, String email, String name, String phone) {
-        this.userId = userId;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.phone = phone;
-    }
 }
 

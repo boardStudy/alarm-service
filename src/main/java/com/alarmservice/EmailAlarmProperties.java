@@ -1,4 +1,4 @@
-package com.example.alarmservice;
+package com.alarmservice;
 
 public class EmailAlarmProperties {
 

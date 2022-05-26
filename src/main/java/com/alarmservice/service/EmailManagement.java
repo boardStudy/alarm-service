@@ -1,32 +1,27 @@
-package com.example.alarmservice.service;
+package com.alarmservice.service;
 
-import com.example.alarmservice.mapper.AlarmMapper;
-import com.example.alarmservice.dto.Comment;
-import com.example.alarmservice.dto.User;
+import com.alarmservice.dto.Comment;
+import com.alarmservice.dto.User;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.internet.MimeMessage;
 
-import static com.example.alarmservice.EmailAlarmProperties.*;
-
+import static com.alarmservice.EmailAlarmProperties.*;
 
 @Service
 @RequiredArgsConstructor
 class AlarmManagement { // 이메일 재사용성을 위해 분리
 
     private final JavaMailSender javaMailSender;
-    private final AlarmMapper alarmMapper;
 
-    public void sendMail(Comment comment) {
+    public void sendMail(Comment comment, User articleWriter) {
 
         String commenter = comment.getCommenter();
 
-        int boardId = comment.getBoardId();
-        User articleWriter = getWriter(boardId);
         String to = articleWriter.getEmail();
         String writer = articleWriter.getUserId();
 
@@ -43,12 +38,6 @@ class AlarmManagement { // 이메일 재사용성을 위해 분리
                 e.printStackTrace();
             }
         }
-    }
-
-    // 작성자 정보
-    @Transactional
-    public User getWriter(int boardId) {
-        return alarmMapper.getWriter(boardId);
     }
 
 }

@@ -14,7 +14,7 @@ import static com.alarmservice.EmailAlarmProperties.*;
 
 @Service
 @RequiredArgsConstructor
-class AlarmManagement { // 이메일 재사용성을 위해 분리
+public class AlarmManagement { // 이메일 재사용성을 위해 분리
 
     private final JavaMailSender javaMailSender;
 

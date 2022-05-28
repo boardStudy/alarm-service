@@ -3,8 +3,8 @@ spring:
   mail:
       host: smtp.gmail.com
       port: 587
-      username: dahoonemailtest@gmail.com
-      password: andrprnfma
+      username: alarmmanager714@gmail.com
+      password: ${gmail_password}
       properties:
         mail:
             transport:
@@ -15,5 +15,8 @@ spring:
                 auth: true
                 starttls:
                     enable: true
+
+gmail_password : ${MAIL_PASSWORD}
+
 server:
   port: 8081

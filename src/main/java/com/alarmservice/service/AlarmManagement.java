@@ -1,7 +1,6 @@
 package com.alarmservice.service;
 
-import com.alarmservice.dto.Comment;
-import com.alarmservice.dto.User;
+import com.alarmservice.dto.AlarmRequest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,16 +13,15 @@ import static com.alarmservice.EmailAlarmProperties.*;
 
 @Service
 @RequiredArgsConstructor
-public class AlarmManagement { // 이메일 재사용성을 위해 분리
+public class AlarmManagement {
 
     private final JavaMailSender javaMailSender;
 
-    public void sendMail(Comment comment, User articleWriter) {
+    public void sendMail(AlarmRequest alarmRequest) {
 
-        String commenter = comment.getCommenter();
-
-        String to = articleWriter.getEmail();
-        String writer = articleWriter.getUserId();
+        String commenter = alarmRequest.getCommenter();
+        String to = alarmRequest.getEmail();
+        String writer = alarmRequest.getWriter();
 
         if(!commenter.equals(writer)) {
             try {
@@ -31,8 +29,8 @@ public class AlarmManagement { // 이메일 재사용성을 위해 분리
                 MimeMessageHelper mailHelper = new MimeMessageHelper(mail, "UTF-8");
                 mailHelper.setFrom(FROM);
                 mailHelper.setTo(to);
-                mailHelper.setSubject(TITLE);
-                mailHelper.setText(String.format(CONTENT,commenter,comment.getComment()));
+                mailHelper.setSubject(String.format(TITLE,commenter));
+                mailHelper.setText(String.format(CONTENT,commenter,alarmRequest.getComment()));
                 javaMailSender.send(mail);
             } catch (Exception e) {
                 e.printStackTrace();
